@@ -98,6 +98,10 @@ export class MenuScene extends Phaser.Scene {
 
             startButton.removeInteractive();
             controlsButton.removeInteractive();
+
+            setTimeout(() => {
+                this.scene.start("level1");
+            }, 2000)
         });
 
         controlsButton.on("pointerover", () => {

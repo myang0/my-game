@@ -1,0 +1,230 @@
+{
+	"textures": [
+		{
+			"image": "Pidgeotto.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 94,
+				"h": 478
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "PidgeottoFly_01.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 90,
+						"h": 48
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 90,
+						"h": 48
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 90,
+						"h": 48
+					}
+				},
+				{
+					"filename": "PidgeottoFly_02.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 78,
+						"h": 52
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 78,
+						"h": 52
+					},
+					"frame": {
+						"x": 0,
+						"y": 48,
+						"w": 78,
+						"h": 52
+					}
+				},
+				{
+					"filename": "PidgeottoFly_03.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 90,
+						"h": 46
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 90,
+						"h": 46
+					},
+					"frame": {
+						"x": 0,
+						"y": 100,
+						"w": 90,
+						"h": 46
+					}
+				},
+				{
+					"filename": "PidgeottoFly_04.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 78,
+						"h": 52
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 78,
+						"h": 52
+					},
+					"frame": {
+						"x": 0,
+						"y": 146,
+						"w": 78,
+						"h": 52
+					}
+				},
+				{
+					"filename": "PidgeottoGlide_01.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 94,
+						"h": 46
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 94,
+						"h": 46
+					},
+					"frame": {
+						"x": 0,
+						"y": 198,
+						"w": 94,
+						"h": 46
+					}
+				},
+				{
+					"filename": "PidgeottoGlide_02.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 94,
+						"h": 48
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 94,
+						"h": 48
+					},
+					"frame": {
+						"x": 0,
+						"y": 244,
+						"w": 94,
+						"h": 48
+					}
+				},
+				{
+					"filename": "PidgeottoGlide_03.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 94,
+						"h": 46
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 94,
+						"h": 46
+					},
+					"frame": {
+						"x": 0,
+						"y": 292,
+						"w": 94,
+						"h": 46
+					}
+				},
+				{
+					"filename": "PidgeottoGlide_04.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 94,
+						"h": 46
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 94,
+						"h": 46
+					},
+					"frame": {
+						"x": 0,
+						"y": 338,
+						"w": 94,
+						"h": 46
+					}
+				},
+				{
+					"filename": "PidgeottoGlide_05.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 94,
+						"h": 48
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 94,
+						"h": 48
+					},
+					"frame": {
+						"x": 0,
+						"y": 384,
+						"w": 94,
+						"h": 48
+					}
+				},
+				{
+					"filename": "PidgeottoGlide_06.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 94,
+						"h": 46
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 94,
+						"h": 46
+					},
+					"frame": {
+						"x": 0,
+						"y": 432,
+						"w": 94,
+						"h": 46
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:ece3f509370fb613f52b96276f3e7727:54e44bda2eab079733710050e8c3eb36:a51102be3510fb6aab9bf9c93f09645f$"
+	}
+}
