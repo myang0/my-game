@@ -54,7 +54,7 @@ export class Level1Scene extends Phaser.Scene {
 
         this.keyboard = this.input.keyboard.addKeys("W, A, S, D, SPACE");
 
-        this.pidgeotto = new Lvl1Player(this, 100, 400, "pidgeotto", "PidgeottoFly_01.png").setDepth(2);
+        this.pidgeotto = new Lvl1Player(this, this.game.renderer.width / 2, 3 * this.game.renderer.height / 4, "pidgeotto", "PidgeottoFly_01.png").setDepth(2);
         this.gust = this.add.sprite(100, 360, "gust", "Gust_01.png").setDepth(1);
 
         this.pidgeotto.play("pidgeotto_fly");
@@ -78,13 +78,13 @@ export class Level1Scene extends Phaser.Scene {
             this.pidgeotto.setVelocityX(0);
         }
 
-        if (this.keyboard.SPACE.isDown === true && this.pidgeotto.feathersUp === true) {
+        if (this.keyboard.SPACE.isDown === true && this.pidgeotto.actives.feather === true) {
             this.pidgeotto.anims.msPerFrame = 64;
 
             var f = new Feather(this, this.pidgeotto.x + ((Math.random() * 50) - 25), this.pidgeotto.y, "feather", "Feather.png");
             this.feathers.add(f);
 
-            this.pidgeotto.setCooldown();
+            this.pidgeotto.shootFeather();
         } 
         
         else {
