@@ -1,0 +1,104 @@
+{
+	"textures": [
+		{
+			"image": "Hurricane.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 262,
+				"h": 64
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Hurricane_01.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 64,
+						"h": 62
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 62
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 64,
+						"h": 62
+					}
+				},
+				{
+					"filename": "Hurricane_02.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 64,
+						"h": 62
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 62
+					},
+					"frame": {
+						"x": 67,
+						"y": 1,
+						"w": 64,
+						"h": 62
+					}
+				},
+				{
+					"filename": "Hurricane_03.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 64,
+						"h": 62
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 62
+					},
+					"frame": {
+						"x": 133,
+						"y": 1,
+						"w": 64,
+						"h": 62
+					}
+				},
+				{
+					"filename": "Hurricane_04.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 62,
+						"h": 62
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 62,
+						"h": 62
+					},
+					"frame": {
+						"x": 199,
+						"y": 1,
+						"w": 62,
+						"h": 62
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:346b106402e636cb6a145900419ac4a6:6c3e9a4d0fd1b268d5654d466ae362a3:d991d8d85a802f8d0b0394bfb42ea8b5$"
+	}
+}

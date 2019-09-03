@@ -1,6 +1,7 @@
 import { Feather } from "../classes/Feather";
 import { Lvl1Player } from "../classes/Lvl1Player";
 import { Gust } from "../classes/Gust";
+import { Hurricane } from "../classes/Hurricane";
 
 export class Level1Scene extends Phaser.Scene {
     constructor() {
@@ -12,6 +13,7 @@ export class Level1Scene extends Phaser.Scene {
     preload() {
         this.load.atlas("pidgeotto", "assets/spritesheets/Pidgeotto.png", "assets/spritesheets/Pidgeotto.json");
         this.load.atlas("gust", "assets/spritesheets/Gust.png", "assets/spritesheets/Gust.json");
+        this.load.atlas("hurricane", "assets/spritesheets/Hurricane.png", "assets/spritesheets/Hurricane.json");
 
         this.load.image("feather", "assets/pictures/Feather.png");
         
@@ -57,12 +59,26 @@ export class Level1Scene extends Phaser.Scene {
             repeat: -1
         });
 
+        this.anims.create({
+            key: "hurricane_spin",
+            frames: this.anims.generateFrameNames("hurricane", {
+                prefix: "Hurricane_0",
+                suffix: ".png",
+                start: 1,
+                end: 4
+            }),
+            repeat: -1
+        })
+
         this.keyboard = this.input.keyboard.addKeys("W, A, S, D, SPACE, Q");
 
         this.pidgeotto = new Lvl1Player(this, this.game.renderer.width / 2, 3 * this.game.renderer.height / 4, "pidgeotto", "PidgeottoFly_01.png").setDepth(2);
         this.pidgeotto.play("pidgeotto_fly");
 
         this.playerProjectiles = this.add.group();
+
+        this.spaceHeld = false;
+        this.hurricane = null;
     }
 
     update() {
@@ -88,8 +104,15 @@ export class Level1Scene extends Phaser.Scene {
                 this.pidgeotto.setCooldown("switch");
     
                 this.switchSound.play();
-            } else {
+            } 
 
+            if (this.spaceHeld) {
+                this.spaceHeld = false;
+                
+                this.hurricane.destroy();
+                this.hurricane = null;
+
+                this.pidgeotto.play("pidgeotto_fly");
             }
         }
 
@@ -117,7 +140,31 @@ export class Level1Scene extends Phaser.Scene {
         }
 
         else if (this.pidgeotto.checkAtkMode("hurricane")) {
+            if (this.keyboard.SPACE.isDown == true && this.spaceHeld == false && this.pidgeotto.isActive("hurricane")) {
+                this.spaceHeld = true;
+                this.hurricane = new Hurricane(this, this.pidgeotto.x, this.pidgeotto.y - 50, "hurricane", "Hurricane_01.png");
+
+                this.pidgeotto.play("pidgeotto_glide");
+            } 
             
+            else if (this.keyboard.SPACE.isDown == true && this.spaceHeld == true) {
+                this.hurricane.charge();
+
+                this.hurricane.x = this.pidgeotto.x;
+                this.hurricane.y = this.pidgeotto.y - 50;
+            }
+            
+            else if (this.keyboard.SPACE.isUp == true && this.spaceHeld == true) {
+                this.spaceHeld = false;
+
+                this.hurricane.release();
+                this.playerProjectiles.add(this.hurricane);
+
+                this.pidgeotto.setCooldown("hurricane");
+
+                this.hurricane = null;
+                this.pidgeotto.play("pidgeotto_fly");
+            }
         }
 
         this.pidgeotto.update();

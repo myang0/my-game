@@ -8,9 +8,9 @@ export class Lvl1Player extends Phaser.Physics.Arcade.Sprite {
         scene.physics.world.enableBody(this);
         this.setImmovable(true);
 
-        this.timers = {feather: 0, gust: 0, switch: 0};
-        this.cooldowns = {feather: 5, gust: 15, switch: 20};
-        this.actives = {feather: true, gust: true, switch: true};
+        this.timers = {feather: 0, gust: 0, switch: 0, hurricane: 0};
+        this.cooldowns = {feather: 5, gust: 15, switch: 20, hurricane: 60};
+        this.actives = {feather: true, gust: true, switch: true, hurricane: true};
 
         this.atkModes = {featherDance: true, gust: false, hurricane: false};
         this.atkMode = this.atkModes.featherDance;
