@@ -32,7 +32,7 @@ export class Lvl1Player extends Phaser.Physics.Arcade.Sprite {
         } else {
             return false;
         }
-    }
+    }         
 
     switchAtkMode() {
         if (this.atkModes.featherDance == true) {

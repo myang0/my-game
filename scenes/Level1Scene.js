@@ -2,6 +2,7 @@ import { Feather } from "../classes/Feather";
 import { Lvl1Player } from "../classes/Lvl1Player";
 import { Gust } from "../classes/Gust";
 import { Hurricane } from "../classes/Hurricane";
+import { Present } from "../classes/Present";
 
 export class Level1Scene extends Phaser.Scene {
     constructor() {
@@ -14,8 +15,10 @@ export class Level1Scene extends Phaser.Scene {
         this.load.atlas("pidgeotto", "assets/spritesheets/Pidgeotto.png", "assets/spritesheets/Pidgeotto.json");
         this.load.atlas("gust", "assets/spritesheets/Gust.png", "assets/spritesheets/Gust.json");
         this.load.atlas("hurricane", "assets/spritesheets/Hurricane.png", "assets/spritesheets/Hurricane.json");
+        this.load.atlas("delibird", "assets/spritesheets/delibird.png", "assets/spritesheets/delibird_atlas.json");
 
         this.load.image("feather", "assets/pictures/Feather.png");
+        this.load.image("present", "assets/pictures/Present.png");
         
         this.load.audio("atk_switch", "assets/soundeffects/switchAtk.mp3");
     }
@@ -68,17 +71,49 @@ export class Level1Scene extends Phaser.Scene {
                 end: 4
             }),
             repeat: -1
-        })
+        });
+
+        this.anims.create({
+            key: "delibird_walk",
+            frameRate: 4,
+            frames: this.anims.generateFrameNames("delibird", {
+                prefix: "delibirdwalk_0",
+                start: 1,
+                end: 4
+            }),
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: "delibird_atk",
+            frames: this.anims.generateFrameNames("delibird", {
+                prefix: "delibirdatk_0",
+                start: 1,
+                end: 8
+            })
+        });
 
         this.keyboard = this.input.keyboard.addKeys("W, A, S, D, SPACE, Q");
 
         this.pidgeotto = new Lvl1Player(this, this.game.renderer.width / 2, 3 * this.game.renderer.height / 4, "pidgeotto", "PidgeottoFly_01.png").setDepth(2);
         this.pidgeotto.play("pidgeotto_fly");
 
-        this.playerProjectiles = this.add.group();
+        this.playerProjectiles = this.physics.add.group();
+        this.enemyProjectiles = this.physics.add.group();
+        this.enemies = this.physics.add.group();
 
         this.spaceHeld = false;
         this.hurricane = null;
+
+        this.delibird = this.add.sprite(300, 300, "delibird", "delibirdwalk_02").setScale(0.75);
+        this.delibird.play("delibird_atk");
+        this.enemies.add(this.delibird);
+
+        this.present = new Present(this, 100, 100, this.pidgeotto.x, this.pidgeotto.y, "present");
+
+        this.physics.add.overlap(this.playerProjectiles, this.enemies, () => {
+            console.log("asdf")
+        })
     }
 
     update() {
@@ -96,6 +131,8 @@ export class Level1Scene extends Phaser.Scene {
         } if (this.keyboard.A.isUp === true && this.keyboard.D.isUp === true) {
             this.pidgeotto.setVelocityX(0);
         }
+
+        this.present.update();
 
         // Switch attack mode
         if (this.keyboard.Q.isDown) {
