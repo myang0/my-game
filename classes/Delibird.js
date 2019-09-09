@@ -13,7 +13,7 @@ export class Delibird extends Phaser.Physics.Arcade.Sprite {
         this.play("delibird_walk");
         this.setVelocityY(96);
 
-        this.atkTimer = Math.random() * 60 + 120;
+        this.atkTimer = Math.random() * 60 + 60;
         this.throwMax = 16;
         this.throwTimer = -1; 
     }
@@ -24,14 +24,20 @@ export class Delibird extends Phaser.Physics.Arcade.Sprite {
             this.play("delibird_atk");
             this.anims.chain("delibird_walk");
 
-            this.atkTimer = Math.random() * 60 + 120;
+            this.atkTimer = Math.random() * 60 + 60;
             this.throwTimer = 16;
         }
 
         if (this.throwTimer >= -1) {
             this.throwTimer--;
             if (this.throwTimer == 0) {
-                var p = new Present(this.scene, this.x, this.y, this.scene.pidgeotto.x, this.scene.pidgeotto.y, "present");
+                var targetX = this.scene.pidgeotto.x;
+                var targetY = this.scene.pidgeotto.y;
+
+                var xOffset = Math.random() * 100 - 50;
+                var yOffset = Math.random() * 100 - 50;
+
+                var p = new Present(this.scene, this.x, this.y, targetX + xOffset, targetY + yOffset, "present").setDepth(3);
                 this.scene.enemyProjectiles.add(p);
             }
         }

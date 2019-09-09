@@ -4,6 +4,7 @@ import { Gust } from "../classes/Gust";
 import { Hurricane } from "../classes/Hurricane";
 import { Present } from "../classes/Present";
 import { Delibird } from "../classes/Delibird";
+import { PresentExplosion } from "../classes/PresentExplosion";
 
 export class Level1Scene extends Phaser.Scene {
     constructor() {
@@ -17,6 +18,7 @@ export class Level1Scene extends Phaser.Scene {
         this.load.atlas("gust", "assets/spritesheets/Gust.png", "assets/spritesheets/Gust.json");
         this.load.atlas("hurricane", "assets/spritesheets/Hurricane.png", "assets/spritesheets/Hurricane.json");
         this.load.atlas("delibird", "assets/spritesheets/delibird.png", "assets/spritesheets/delibird_atlas.json");
+        this.load.atlas("p_explosion", "assets/spritesheets/presentexplosion.png", "assets/spritesheets/presentexplosion_atlas.json");
 
         this.load.image("feather", "assets/pictures/Feather.png");
         this.load.image("present", "assets/pictures/Present.png");
@@ -94,6 +96,16 @@ export class Level1Scene extends Phaser.Scene {
             })
         });
 
+        this.anims.create({
+            key: "present_explosion",
+            frameRate: 15,
+            frames: this.anims.generateFrameNames("p_explosion", {
+                prefix: "presentexplosion_0",
+                start: 1,
+                end: 4
+            }),
+        });
+
         this.keyboard = this.input.keyboard.addKeys("W, A, S, D, SPACE, Q");
 
         this.pidgeotto = new Lvl1Player(this, this.game.renderer.width / 2, 3 * this.game.renderer.height / 4, "pidgeotto", "PidgeottoFly_01.png").setDepth(2);
@@ -106,13 +118,11 @@ export class Level1Scene extends Phaser.Scene {
         this.spaceHeld = false;
         this.hurricane = null;
 
-        var d = new Delibird(this, Math.random() * this.game.renderer.width, -25, "delibird", "delibirdwalk_01").setScale(0.75);
+        var d = new Delibird(this, Math.random() * this.game.renderer.width, -25, "delibird", "delibirdwalk_01").setScale(0.7);
         this.enemies.add(d);
 
-        this.present = new Present(this, 0, 0, this.pidgeotto.x, this.pidgeotto.y, "present");
-
         this.physics.add.overlap(this.playerProjectiles, this.enemies, () => {
-            
+
         })
     }
 
@@ -131,8 +141,6 @@ export class Level1Scene extends Phaser.Scene {
         } if (this.keyboard.A.isUp === true && this.keyboard.D.isUp === true) {
             this.pidgeotto.setVelocityX(0);
         }
-
-        this.present.update();
 
         // Switch attack mode
         if (this.keyboard.Q.isDown) {

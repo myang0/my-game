@@ -1,3 +1,5 @@
+import { PresentExplosion } from "./PresentExplosion"
+
 export class Present extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, xPos, yPos, targetXPos, targetYPos, texture) {
         super(scene, xPos, yPos, texture);
@@ -17,11 +19,13 @@ export class Present extends Phaser.Physics.Arcade.Sprite {
 
         this.setVelocityX(distanceX);
         this.setVelocityY(distanceY);
+
+        this.currScene = scene;
     }
 
     scaleArc(x) {
-        var squared = (- 1 / 720) * (x * x);
-        var linear = (11 / 120) * x;
+        var squared = (- 1 / 1200) * (x * x);
+        var linear = (7 / 120) * x;
         var constant = 1;
 
         return squared + linear + constant;
@@ -37,6 +41,9 @@ export class Present extends Phaser.Physics.Arcade.Sprite {
         this.time++;
         if (this.time >= this.maxTime) {
             this.destroy();
+
+            var pe = new PresentExplosion(this.currScene, this.x, this.y, "p_explosion", "presentexplosion_01").setDepth(3);
+            this.currScene.enemyProjectiles.add(pe);
         }
     }
 }
