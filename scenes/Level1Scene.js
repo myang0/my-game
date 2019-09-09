@@ -3,6 +3,7 @@ import { Lvl1Player } from "../classes/Lvl1Player";
 import { Gust } from "../classes/Gust";
 import { Hurricane } from "../classes/Hurricane";
 import { Present } from "../classes/Present";
+import { Delibird } from "../classes/Delibird";
 
 export class Level1Scene extends Phaser.Scene {
     constructor() {
@@ -98,21 +99,20 @@ export class Level1Scene extends Phaser.Scene {
         this.pidgeotto = new Lvl1Player(this, this.game.renderer.width / 2, 3 * this.game.renderer.height / 4, "pidgeotto", "PidgeottoFly_01.png").setDepth(2);
         this.pidgeotto.play("pidgeotto_fly");
 
-        this.playerProjectiles = this.physics.add.group();
-        this.enemyProjectiles = this.physics.add.group();
-        this.enemies = this.physics.add.group();
+        this.playerProjectiles = this.add.group();
+        this.enemyProjectiles = this.add.group();
+        this.enemies = this.add.group();
 
         this.spaceHeld = false;
         this.hurricane = null;
 
-        this.delibird = this.add.sprite(300, 300, "delibird", "delibirdwalk_02").setScale(0.75);
-        this.delibird.play("delibird_atk");
-        this.enemies.add(this.delibird);
+        var d = new Delibird(this, Math.random() * this.game.renderer.width, -25, "delibird", "delibirdwalk_01").setScale(0.75);
+        this.enemies.add(d);
 
-        this.present = new Present(this, 100, 100, this.pidgeotto.x, this.pidgeotto.y, "present");
+        this.present = new Present(this, 0, 0, this.pidgeotto.x, this.pidgeotto.y, "present");
 
         this.physics.add.overlap(this.playerProjectiles, this.enemies, () => {
-            console.log("asdf")
+            
         })
     }
 
@@ -153,7 +153,7 @@ export class Level1Scene extends Phaser.Scene {
             }
         }
 
-        // Attacks
+        // Using feather dance
         if (this.pidgeotto.checkAtkMode("featherDance")) {
             if (this.keyboard.SPACE.isDown == true && this.pidgeotto.isActive("feather")) {
                 this.pidgeotto.anims.msPerFrame = 64;
@@ -167,6 +167,7 @@ export class Level1Scene extends Phaser.Scene {
             }
         }
 
+        // Using gust
         else if (this.pidgeotto.checkAtkMode("gust")) {
             if (this.keyboard.SPACE.isDown == true && this.pidgeotto.isActive("gust")) {
                 var g = new Gust(this, this.pidgeotto.x, this.pidgeotto.y, "gust", "Gust_01.png");
@@ -176,6 +177,7 @@ export class Level1Scene extends Phaser.Scene {
             }
         }
 
+        // Using hurricane
         else if (this.pidgeotto.checkAtkMode("hurricane")) {
             if (this.keyboard.SPACE.isDown == true && this.spaceHeld == false && this.pidgeotto.isActive("hurricane")) {
                 this.spaceHeld = true;
@@ -209,6 +211,16 @@ export class Level1Scene extends Phaser.Scene {
         for (var i = 0; i < this.playerProjectiles.getChildren().length; i++) {
             var pProj = this.playerProjectiles.getChildren()[i];
             pProj.update();
+        }
+
+        for (var i = 0; i < this.enemies.getChildren().length; i++) {
+            var enemy = this.enemies.getChildren()[i];
+            enemy.update();
+        }
+
+        for (var i = 0; i < this.enemyProjectiles.getChildren().length; i++) {
+            var eProj = this.enemyProjectiles.getChildren()[i];
+            eProj.update();
         }
     }
 }
